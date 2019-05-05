@@ -1,0 +1,53 @@
+{:edge.kick/config
+ {:kick.builder/target #profile {:dev "target/dev"
+                                 :prod "target/prod"}
+  :kick/sass {:builds [{:id "juxt.shop"
+                        :source "juxt.shop.scss"
+                        :target "public/juxt.shop.css"}]}
+  :kick/figwheel-main {:builds [{:id "app"
+                                 :main juxt.shop.frontend.main
+                                 :output-to "public/frontend.js"
+                                 :output-dir "public/frontend.out"
+                                 :asset-path "/frontend.out"
+                                 :optimizations #profile {:dev :none
+                                                          :prod :advanced}}]
+                       :figwheel-config
+                       {:ring-server-options
+                        {:port 4040}}}}
+
+ :ig.system/base
+ {
+  [:edge.yada.ig/classpath-name :juxt.shop/index] {:name "index.html"}
+  [:edge.yada.ig/resources :juxt.shop/assets] {:path "public/"}
+  :edge.yada.ig/listener {:handler #ig/ref :edge.bidi.ig/vhost
+                          :port 2121}
+
+  [:juxt.shop.assets/react :edge.yada.ig/webjar] {:webjar "react"}
+  [:juxt.shop.assets/react-dom :edge.yada.ig/webjar] {:webjar "react-dom"}
+  [:juxt.shop.assets/react-jsonschema-form :edge.yada.ig/webjar] {:webjar "react-jsonschema-form"}
+
+  :edge.bidi.ig/vhost
+  [["http://localhost:2121"
+    [""
+     [["/" #ig/ref [:edge.yada.ig/classpath-name :juxt.shop/index]]
+      ["/api"
+       [
+        ["/products" #ig/ref [:juxt.shop.api/api :juxt.shop.api/products]]
+        ]]
+      ["/assets"
+       [
+        ["/react-dom" #ig/ref :juxt.shop.assets/react-dom]
+        ["/react-jsonschema-form" #ig/ref :juxt.shop.assets/react-jsonschema-form]
+        ["/react" #ig/ref :juxt.shop.assets/react]]]
+      ["" #ig/ref [:juxt.shop/assets :edge.yada.ig/resources]]]]]]
+
+  [:juxt.shop.api/api :juxt.shop.api/products] {:system #ig/ref :juxt.crux.ig/system}
+  :juxt.crux.ig.system/standalone {:kv-backend "crux.kv.rocksdb.RocksKv"}
+  }
+
+ :ig.system/dev
+ {:edge.kick/builder #ref [:edge.kick/config]}
+
+ :ig/system #profile {:dev #merge [#ref [:ig.system/base]
+                                   #ref [:ig.system/dev]]
+                      :default #ref [:ig.system/base]}}

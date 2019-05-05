@@ -1,0 +1,15 @@
+{:title "Add a product"
+ :type "object"
+ :required  [:title :amount]
+ :properties
+ {:title
+  {:type "string"
+   :title "Title"
+   :default "Cucumber"}
+  :amount
+  {:type "number"
+   :title "Price"
+   :default 150}}
+ ;; Setting additionalProperties to false makes this a closed
+ ;; schema.
+ :additionalProperties false}

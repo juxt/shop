@@ -1,0 +1,27 @@
+html, body {
+  background-color: #eee;
+  height: 100%;
+
+  font-family: sans-serif;
+}
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1em;
+}
+
+.content {
+  background-color: white;
+  padding: 2rem;
+}
+
+#app {
+  min-height: 50px;
+  width: 100%;
+  background-color: #efefef;
+  padding: 1em;
+}
