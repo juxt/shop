@@ -1,37 +1,6 @@
-= Edge
+= JUXT Shop
 
-link:https://clojurians.zulipchat.com/#narrow/stream/151045-JUXT[image:https://img.shields.io/badge/zulip-join_chat-brightgreen.svg[]]
-
-Documentation is hosted at link:https://juxt.pro/edge/docs/index.html[juxt.pro].
-The sources can be browsed offline in <<doc/resources/doc/sources/index.adoc#>>.
-
-TIP: Use link:https://github.com/asciidoctor/asciidoctor-browser-extension[Asciidoctor browser extension] to view these as html in your browser.
-
-== Intro
-
-For newcomers to the Clojure language it can be quite a daunting task to put together a real Clojure application from scratch.
-That's why we've done this initial step for you and creating a project that you can learn from and build upon.
-
-This isn't merely a toy application.
-Edge is JUXT's baseline architecture which we use for our own professional Clojure projects.
-The name is taken from https://en.wikipedia.org/wiki/Datum_reference[Datum edge].
-
-== Features
-
-Edge is a simple foundation integrating the following:
-
-* link:https://clojure.org/guides/deps_and_cli[Dependency management]
-* Development setup
-* link:https://github.com/juxt/aero[Configuration]
-* link:https://github.com/juxt/yada[Web server] & link:https://github.com/juxt/bidi[routing]
-
-With examples for:
-
-* link:https://github.com/juxt/edge/tree/master/examples/tutorial.vent[A single page application]
-* link:https://github.com/juxt/edge/tree/master/examples/phonebook-api[A REST API]
-* link:https://github.com/juxt/edge/tree/master/examples/phonebook-graphql[A GraphQL API]
-
-For more information on why you'd use Edge, see link:https://juxt.pro/edge/docs/why-edge.html[Why Edge?].
+A sample application to demonstrate a realistic application built using JUXT's https://juxt.pro/crux[Crux] database.
 
 == Copyright & License
 
